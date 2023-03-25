@@ -8,7 +8,7 @@ module.exports = function (RED) {
       node.on("input", async (msg, send, done) => {
         const apiKey = config.apiKey;
         const prompt = msg.payload;
-        const apiUrl = "https://api.openai.com/v1/engines/davinci-codex/completions";
+        const apiUrl = "https://api.openai.com/v1/engines/text-davinci-003/completions";
   
         const payload = {
           prompt: prompt,
@@ -25,7 +25,7 @@ module.exports = function (RED) {
           const response = await axios.post(apiUrl, payload, {
             headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${apiKey}`,
+              "Authorization": 'Bearer ${apiKey}',
             },
           });
   
@@ -41,4 +41,3 @@ module.exports = function (RED) {
   
     RED.nodes.registerType("chatgpt", ChatGPTNode);
   };
-  
