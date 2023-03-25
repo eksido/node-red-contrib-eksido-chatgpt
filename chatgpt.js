@@ -8,7 +8,7 @@ module.exports = function (RED) {
     node.on("input", (msg, send, done) => {
       const apiKey = config.apiKey;
       const prompt = msg.payload;
-      const apiUrl = "https://api.openai.com/v1/engines/davinci-codex/completions";
+      const apiUrl = "https://api.openai.com/v1/engines/text-davinci-002/completions";
 
       const payload = {
         prompt: prompt,

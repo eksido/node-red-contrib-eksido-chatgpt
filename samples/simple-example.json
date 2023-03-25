@@ -1,0 +1,55 @@
+[
+    {
+      "id": "f1",
+      "type": "tab",
+      "label": "Simple ChatGPT Example"
+    },
+    {
+      "id": "n1",
+      "type": "inject",
+      "z": "f1",
+      "name": "Sample Prompt",
+      "topic": "",
+      "payload": "Once upon a time...",
+      "payloadType": "str",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "x": 110,
+      "y": 120,
+      "wires": [["n2"]]
+    },
+    {
+      "id": "n2",
+      "type": "chatgpt",
+      "z": "f1",
+      "name": "ChatGPT",
+      "apiKey": "",
+      "maxTokens": 50,
+      "numResponses": 1,
+      "stopSequences": "",
+      "temperature": 0.8,
+      "x": 300,
+      "y": 120,
+      "wires": [["n3"]]
+    },
+    {
+      "id": "n3",
+      "type": "debug",
+      "z": "f1",
+      "name": "",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "payload",
+      "targetType": "msg",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 490,
+      "y": 120,
+      "wires": []
+    }
+  ]
+  
