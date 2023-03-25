@@ -1,0 +1,53 @@
+<script type="text/javascript">
+    RED.nodes.registerType("chatgpt", {
+      category: "function",
+      color: "#A6A6A6",
+      defaults: {
+        name: { value: "" },
+        apiKey: { value: "", required: true },
+        maxTokens: { value: 50 },
+        numResponses: { value: 1 },
+        stopSequences: { value: "" },
+        temperature: { value: 0.8 },
+      },
+      inputs: 1,
+      outputs: 1,
+      icon: "file.png",
+      label: function () {
+        return this.name || "chatgpt";
+      },
+      paletteLabel: "chatgpt",
+      oneditprepare: function () {},
+    });
+  </script>
+  <script type="text/html" data-template-name="chatgpt">
+    <div class="form-row">
+      <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+      <label for="node-input-apiKey"><i class="icon-key"></i> API Key</label>
+      <input type="text" id="node-input-apiKey" placeholder="API Key">
+    </div>
+    <div class="form-row">
+      <label for="node-input-maxTokens">Max Tokens</label>
+      <input type="number" id="node-input-maxTokens" min="1" placeholder="50">
+    </div>
+    <div class="form-row">
+      <label for="node-input-numResponses">Number of Responses</label>
+      <input type="number" id="node-input-numResponses" min="1" placeholder="1">
+    </div>
+    <div class="form-row">
+      <label for="node-input-stopSequences">Stop Sequences (comma-separated)</label>
+      <input type="text" id="node-input-stopSequences" placeholder="">
+    </div>
+    <div class="form-row">
+      <label for="node-input-temperature">Temperature</label>
+      <input type="number" id="node-input-temperature" min="0" max="1" step="0.1" placeholder="0.8">
+    </div>
+  </script>
+  
+  <script type="text/html" data-help-name="chatgpt">
+    <p>A custom node that connects to the ChatGPT API and generates text completions.</p>
+    <p>Provide your API key, input settings, and connect the node to receive the generated text.</p>
+  </script>    
