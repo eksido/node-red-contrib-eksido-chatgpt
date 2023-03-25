@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-eksido-chatgpt",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A Node-RED node that integrates with ChatGPT API",
   "main": "chatgpt.js",
   "scripts": {
