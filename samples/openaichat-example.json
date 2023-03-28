@@ -1,0 +1,62 @@
+[
+    {
+      "id": "3a0f2e69.a9ba32",
+      "type": "tab",
+      "label": "OpenAI Chat",
+      "disabled": false,
+      "info": ""
+    },
+    {
+      "id": "f5a5d02d.74e1a",
+      "type": "inject",
+      "z": "3a0f2e69.a9ba32",
+      "name": "User Message",
+      "props": [
+        {
+          "p": "payload",
+          "v": "{\"role\": \"user\", \"content\": \"Tell me a joke.\"}",
+          "vt": "json"
+        }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payloadType": "json",
+      "x": 130,
+      "y": 180,
+      "wires": [["9b6a0ea6.53e6a"]]
+    },
+    {
+      "id": "9b6a0ea6.53e6a",
+      "type": "openai-chat",
+      "z": "3a0f2e69.a9ba32",
+      "name": "",
+      "apiKey": "",
+      "model": "gpt-3.5-turbo",
+      "messages": "",
+      "x": 330,
+      "y": 180,
+      "wires": [["1a7afaa8.d8ca75"]]
+  },
+  {
+    "id": "1a7afaa8.d8ca75",
+    "type": "debug",
+    "z": "3a0f2e69.a9ba32",
+    "name": "Chat Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 540,
+    "y": 180,
+    "wires": []
+  }
+]
+
+  
