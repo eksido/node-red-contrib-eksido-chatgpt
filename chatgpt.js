@@ -8,28 +8,30 @@ module.exports = function (RED) {
     node.on("input", async (msg, send, done) => {
       const apiKey = config.apiKey;
       const prompt = msg.payload;
-      const apiUrl = "https://api.openai.com/v1/engines/text-davinci-003/completions";
+      const apiUrl = new URL("https://api.openai.com/v1/engines/text-davinci-003/completions");
 
       const payload = {
         prompt: prompt,
-        max_tokens: config.maxTokens || 7,
-        n: config.numResponses || 1,
+        max_tokens: parseInt(config.maxTokens) || 7,
+        n: parseInt(config.numResponses) || 1,
         stop: config.stopSequences || "\n",
-        temperature: config.temperature || 0,
-        top_p: config.topP || 1,
-        stream: config.stream || false,
-        logprobs: config.logprobs || null,
+        temperature: parseFloat(config.temperature) || 0,
+        top_p: parseFloat(config.topP) || 1,
+        stream: config.stream === "true" || false,
+        logprobs: config.logprobs ? parseInt(config.logprobs) : null,
       };
 
       const options = {
         method: "POST",
+        hostname: apiUrl.hostname,
+        path: apiUrl.pathname,
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${apiKey}`,
         },
       };
 
-      const request = https.request(apiUrl, options, (response) => {
+      const request = https.request(options, (response) => {
         let data = "";
 
         response.on("data", (chunk) => {
@@ -42,7 +44,7 @@ module.exports = function (RED) {
             msg.payload = parsedData.choices.map((choice) => choice.text);
             send(msg);
           } else {
-            node.error("ChatGPT API request failed: " + data);
+            node.error(`ChatGPT API request failed with status code ${response.statusCode}: ${data}`);
           }
           done();
         });
