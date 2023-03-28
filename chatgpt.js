@@ -12,7 +12,7 @@ module.exports = function (RED) {
 
       const payload = {
         prompt: prompt,
-        max_tokens: parseInt(config.maxTokens) || 7,
+        max_tokens: Math.min(parseInt(config.maxTokens), 4096) || 7,
         n: parseInt(config.numResponses) || 1,
         stop: config.stopSequences || "\n",
         temperature: parseFloat(config.temperature) || 0,
