@@ -1,0 +1,82 @@
+<script type="text/javascript">
+    RED.nodes.registerType("openai-chat", {
+      category: "function",
+      color: "#2B3137",
+      defaults: {
+        name: { value: "" },
+        apiKey: { value: "", required: true, type: "text" },
+        model: { value: "gpt-3.5-turbo", required: true, type: "text" },
+      },
+      inputs: 1,
+      outputs: 1,
+      icon: "openai-icon.svg", // Use the same icon as before (if desired)
+      label: function () {
+        return this.name || "openai-chat";
+      },
+    });
+  </script>
+  
+  <script type="text/html" data-template-name="openai-chat">
+    <div class="form-row">
+      <label for="node-input-name">
+        <i class="icon-tag"></i> Name
+      </label>
+      <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+      <label for="node-input-apiKey">
+        <i class="icon-lock"></i> API Key
+      </label>
+      <input type="text" id="node-input-apiKey" placeholder="API Key">
+    </div>
+    <div class="form-row">
+      <label for="node-input-model">
+        <i class="icon-file"></i> Model
+      </label>
+      <input type="text" id="node-input-model" value="gpt-3.5-turbo">
+    </div>
+  </script>
+  
+  <script type="text/javascript" data-help-name="openai-chat">
+    RED.nodes.registerHelp("openai-chat", {
+    name: "OpenAI Chat",
+    description:
+    "A Node-RED node to interact with the OpenAI API using the chat format",
+    category: "Function",
+    inputs: {
+    count: 1,
+    types: ["msg"],
+    description: "A message containing the conversation messages",
+    },
+    outputs: {
+    count: 1,
+    types: ["msg"],
+    description: "The response from the OpenAI API",
+    },
+    details: [
+    {
+    title: "Description",
+    content:
+    "The OpenAI Chat node sends a series of conversation messages to the OpenAI API and returns the AI's response. The input message should contain the messages array in its payload.",
+    },
+    {
+    title: "Input",
+    content:
+    "The input message's payload should be an array of message objects. Each object should have a role property ('user', 'assistant', or 'system') and a content property containing the message text.",
+    },
+    {
+    title: "Output",
+    content:
+    "The output message will contain the AI's response as a string in its payload.",
+    },
+    ],
+    examples: [
+    {
+    title: "Example",
+    content:
+    'An example input message payload: [{"role": "user", "content": "Translate the following English text to French: 'Hello, how are you?'"}]',
+    },
+    ],
+    });
+    </script>
+    
