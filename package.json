@@ -4,7 +4,7 @@
   "description": "A Node-RED node that integrates with ChatGPT API",
   "main": "chatgpt.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/*.test.js"
   },
   "keywords": [
     "node-red",
